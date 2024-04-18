@@ -8,7 +8,14 @@ const page = () => {
     <>
       <HomeHeader />
       <div className="flex flex-col items-center  mt-24 ">
-        <Image src={GoogleLogo} alt="Google Logo" width={300} height={100} />
+        <Image
+          src={GoogleLogo}
+          alt="Google Logo"
+          width={300}
+          height={100}
+          priority
+          style={{ width: "auto" }}
+        />
         <HomeSearch />
       </div>
     </>
