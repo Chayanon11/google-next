@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 
 export default function HomeSearch() {
   const [input, setInput] = useState("");
+  const [randomSearchLoading, setRandomSearchLoading] = useState(false);
   const router = useRouter();
 
   console.log(input);
@@ -19,6 +20,16 @@ export default function HomeSearch() {
     e.preventDefault();
     if (!input.trim()) return;
     router.push(`/search/web?searchTerm=${input}`);
+  };
+
+  const randomSearch = async (e) => {
+    setRandomSearchLoading(true);
+    const response = await fetch("https://random-word-api.herokuapp.com/word")
+      .then((res) => res.json())
+      .then((data) => data[0]);
+    if (!response) return;
+    router.push(`search/web?searchTerm=${response}`);
+    setRandomSearchLoading(false);
   };
 
   return (
@@ -41,9 +52,10 @@ export default function HomeSearch() {
           Google Search
         </button>
         <button
-          className="bg-[#f8f9fa] rounded-md text-sm text-gray-800 hover:ring-gray-200 focus:outline-none active:ring-gray-300 hover:shadow-md w-36 h-10 transition-shadow"
-          onClick={handleSubmit}>
-          I am Feeling Lucky
+          disabled={randomSearchLoading}
+          className="bg-[#f8f9fa] rounded-md text-sm text-gray-800 hover:ring-gray-200 focus:outline-none active:ring-gray-300 hover:shadow-md w-36 h-10 transition-shadow disabled:opacity-80 disabled:shadow-sm"
+          onClick={randomSearch}>
+          {randomSearchLoading ? "Loading..." : "I am Feeling Lucky"}
         </button>
       </div>
     </>
