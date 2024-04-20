@@ -4,6 +4,7 @@ import GoogleLogo from "../asset/Google_2015_logo.png";
 import SearchBox from "./SearchBox";
 import { RiSettings3Line } from "react-icons/ri";
 import { TbGridDots } from "react-icons/tb";
+import SearchHeaderOptions from "../components/SearchHeaderOptions";
 
 export default function SearchHeader() {
   return (
@@ -31,6 +32,7 @@ export default function SearchHeader() {
             </button>
           </div>
         </div>
+        <SearchHeaderOptions />
       </header>
     </>
   );
