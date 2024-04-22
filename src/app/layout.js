@@ -1,5 +1,5 @@
-import Footer from "./components/Footer";
 import "./globals.css";
+import Footer from "@/app/components/Footer";
 
 export const metadata = {
   title: "Google Clone",
